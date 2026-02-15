@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konverter SOR & XML ke PDF</title>
+    <style>
+        body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f4f4f9; }
+        .card { background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center; }
+        input { margin-bottom: 1rem; }
+        button { background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Upload File (.sor / .xml)</h2>
+        <form action="/convert" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".sor,.xml" required><br>
+            <button type="submit">Konversi ke PDF</button>
+        </form>
+        <p style="font-size: 12px; color: #666; margin-top: 15px;">File PDF akan otomatis terunduh setelah proses selesai.</p>
+    </div>
+</body>
+</html>
