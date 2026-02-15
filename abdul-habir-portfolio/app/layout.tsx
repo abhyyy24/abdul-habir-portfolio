@@ -18,6 +18,10 @@ export const metadata: Metadata = {
   description: "Portfolio of Abdul Habir Al Majdi (NIM: F1B02310096), Electrical Engineering Student at University of Mataram. Computer & Network Technician with experience at MM Tronik and Telkom Indonesia.",
   keywords: ["Abdul Habir Al Majdi", "NIM F1B02310096", "Teknik Elektro Unram", "Portfolio IT", "Computer Technician", "NOC Arnet Backbone"],
   authors: [{ name: "Abdul Habir Al Majdi" }],
+  // BARIS VERIFIKASI GOOGLE SEARCH CONSOLE
+  verification: {
+    google: "RJlF46BUaIE8Vs1NGUfJNfheW12AUvFLw3QCUk4x6ZA",
+  },
 };
 
 export default function RootLayout({
