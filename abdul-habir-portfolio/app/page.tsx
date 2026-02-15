@@ -18,8 +18,15 @@ export default function Home() {
   const [isDark, setIsDark] = useState(true); 
   const [visitors, setVisitors] = useState(0); 
 
-  // Logika Visitor Counter Real-Time
+  // Logika Visitor Counter & Google Verification
   useEffect(() => {
+    // 1. Tambahkan Tag Verifikasi Google Search Console secara dinamis
+    const meta = document.createElement('meta');
+    meta.name = "google-site-verification";
+    meta.content = "RJlF46BUaIE8Vs1NGUfJNfheW12AUvFLw3QCUk4x6ZA";
+    document.head.appendChild(meta);
+
+    // 2. Logika Visitor Counter Real-Time
     async function updateVisitors() {
       let { data, error } = await supabase
         .from('visitors')
@@ -110,15 +117,14 @@ export default function Home() {
           <h2 className={`text-[10px] font-black uppercase tracking-[0.4em] mb-12 text-center ${subText}`}>About Me</h2>
           <div className={`${cardBg} rounded-[2.5rem] p-8 md:p-12 flex flex-col md:flex-row gap-12 items-center border ${cardBorder} shadow-2xl`}>
             <div className={`w-64 h-80 rounded-3xl flex-shrink-0 overflow-hidden border ${cardBorder} flex items-center justify-center italic text-sm text-center px-4 ${isDark ? 'bg-white/20 text-[#0e1c47]' : 'bg-zinc-800 text-zinc-500'}`}>
-             
-                  {/* GANTI BAGIAN INI DENGAN FOTO LO */}
-            <div className={`w-64 h-80 rounded-3xl flex-shrink-0 overflow-hidden border ${cardBorder} shadow-lg`}>
-              <img 
-                src="/abdul.jpeg" 
-                alt="Abdul Habir Al Majdi" 
-                className="w-full h-full object-cover shadow-inner"
-              />
-            </div>
+              
+              <div className={`w-64 h-80 rounded-3xl flex-shrink-0 overflow-hidden border ${cardBorder} shadow-lg`}>
+                <img 
+                  src="/abdul.jpeg" 
+                  alt="Abdul Habir Al Majdi" 
+                  className="w-full h-full object-cover shadow-inner"
+                />
+              </div>
             </div>
             <div className={`flex-1 space-y-6 ${isDark ? 'text-[#0e1c47]' : 'text-zinc-300'}`}>
               <p className="text-lg leading-relaxed font-medium">
