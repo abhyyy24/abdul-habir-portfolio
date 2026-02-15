@@ -114,7 +114,7 @@ export default function Home() {
                   {/* GANTI BAGIAN INI DENGAN FOTO LO */}
             <div className={`w-64 h-80 rounded-3xl flex-shrink-0 overflow-hidden border ${cardBorder} shadow-lg`}>
               <img 
-                src="/abdul.JPEG" 
+                src="/abdul.jpeg" 
                 alt="Abdul Habir Al Majdi" 
                 className="w-full h-full object-cover shadow-inner"
               />
