@@ -19,7 +19,6 @@ export default function Home() {
   const [visitors, setVisitors] = useState(0); 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Logika Visitor Counter & Google Verification
   useEffect(() => {
     const meta = document.createElement('meta');
     meta.name = "google-site-verification";
@@ -44,7 +43,6 @@ export default function Home() {
     updateVisitors();
   }, []);
 
-  // Konfigurasi Warna
   const themeBg = isDark ? 'bg-[#78ADCE]' : 'bg-[#0e1c47]';
   const navBg = isDark ? 'bg-[#78ADCE]/90' : 'bg-[#0e1c47]/90';
   const themeText = isDark ? 'text-[#0e1c47]' : 'text-white';
@@ -59,7 +57,6 @@ export default function Home() {
       <nav className={`fixed top-0 w-full z-50 ${navBg} backdrop-blur-md py-4 px-6 flex justify-between items-center border-b ${isDark ? 'border-[#0e1c47]/10' : 'border-white/10'}`}>
         <div className="font-black italic text-sm md:hidden">AHM.</div>
 
-        {/* Menu Desktop */}
         <div className="hidden md:flex gap-6 text-[10px] font-bold uppercase tracking-[0.2em] items-center">
           <a href="#home" className="hover:opacity-60 transition-opacity">Home</a>
           <a href="#about" className="hover:opacity-60 transition-opacity">About</a>
@@ -87,7 +84,6 @@ export default function Home() {
           </button>
         </div>
 
-        {/* Menu Dropdown Mobile */}
         {isMenuOpen && (
           <div className={`absolute top-full left-0 w-full ${navBg} backdrop-blur-xl border-b ${cardBorder} flex flex-col p-6 gap-4 text-[10px] font-bold uppercase tracking-[0.2em] md:hidden`}>
             <a href="#home" onClick={() => setIsMenuOpen(false)} className="py-2 border-b border-white/5">Home</a>
@@ -235,7 +231,8 @@ export default function Home() {
             <p className={`text-sm md:text-base font-medium mb-6 ${isDark ? 'text-[#0e1c47]/90' : 'text-blue-400'}`}>Bachelor of Electrical Engineering | 2022 – Present</p>
             <ul className="space-y-4 opacity-80 text-xs md:text-sm list-none text-left">
               <li className="flex gap-3 items-start"><span className="font-bold">•</span> Fokus pada sistem komputer, networking, dan elektronika.</li>
-              <li className="flex gap-3 items-start"><span className="font-bold">•</span> Mengikuti program pertukaran mahasiswa ke Malaysia.</li>
+              <li className="flex gap-3 items-start"><span className="font-bold">•</span> Mengembangkan kemampuan analisis dan praktik laboratorium melalui proyek akademik.</li>
+              <li className="flex gap-3 items-start"><span className="font-bold">•</span> Mengikuti program pertukaran mahasiswa ke Malaysia sebagai bagian dari pengembangan internasional.</li>
             </ul>
           </div>
         </div>
@@ -251,14 +248,16 @@ export default function Home() {
               <div className="relative z-10 text-left">
                 <h3 className="text-xl md:text-2xl font-bold mb-1 italic">MM Tronik | Sumbawa Besar, Indonesia</h3>
                 <p className={`text-sm md:text-base font-semibold mb-6 ${isDark ? 'text-[#0e1c47]/90' : 'text-blue-400'}`}>Computer & IT Support Technician | 2020 – 2024</p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs md:text-sm opacity-80 leading-relaxed">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 text-xs md:text-sm opacity-80 leading-relaxed">
                   <ul className="space-y-2 text-left">
-                    <li>• Diagnosa & perbaikan hardware/software PC & Laptop.</li>
-                    <li>• Instalasi OS Windows, driver, dan aplikasi.</li>
+                    <li className="flex gap-2 items-start">• Diagnosa & perbaikan hardware/software PC & Laptop.</li>
+                    <li className="flex gap-2 items-start">• Instalasi OS Windows, driver, dan aplikasi.</li>
+                    <li className="flex gap-2 items-start">• Upgrade RAM, Storage, PSU, dan Motherboard.</li>
                   </ul>
                   <ul className="space-y-2 text-left">
-                    <li>• Setup LAN, internet troubleshooting.</li>
-                    <li>• Konsultasi teknis & maintenance sistem.</li>
+                    <li className="flex gap-2 items-start">• Troubleshooting OS errors, overheating, & boot failures.</li>
+                    <li className="flex gap-2 items-start">• Setup LAN, instalasi kabel, dan internet troubleshooting.</li>
+                    <li className="flex gap-2 items-start">• Konsultasi teknis & maintenance sistem untuk user.</li>
                   </ul>
                 </div>
               </div>
@@ -269,8 +268,9 @@ export default function Home() {
                 <h3 className="text-xl md:text-2xl font-bold mb-1 italic">Telkom Indonesia – Arnet Denpasar</h3>
                 <p className={`text-sm md:text-base font-semibold mb-6 ${isDark ? 'text-[#0e1c47]/90' : 'text-blue-400'}`}>Network & IT Infrastructure Intern</p>
                 <ul className="space-y-3 opacity-80 text-xs md:text-sm text-left">
-                  <li>• Monitoring & pemeliharaan infrastruktur jaringan backbone.</li>
-                  <li>• Maintenance server, cable management, & instalasi perangkat.</li>
+                  <li className="flex gap-3 items-start">• Monitoring & pemeliharaan infrastruktur jaringan backbone.</li>
+                  <li className="flex gap-3 items-start">• Troubleshooting jaringan dan diagnosa konektivitas.</li>
+                  <li className="flex gap-3 items-start">• Maintenance server, cable management, & instalasi perangkat jaringan.</li>
                 </ul>
               </div>
             </div>
