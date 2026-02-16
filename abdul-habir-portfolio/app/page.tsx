@@ -19,6 +19,41 @@ export default function Home() {
   const [visitors, setVisitors] = useState(0); 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  // --- FITUR TERMINAL (TAMBAHAN BARU) ---
+  const [isTerminalOpen, setIsTerminalOpen] = useState(false);
+  const [terminalInput, setTerminalInput] = useState('');
+  const [terminalHistory, setTerminalHistory] = useState([
+    'Welcome to AHM-OS v1.0.0', 
+    'System: Connected to abdul habir al majdi',
+    'Type "help" to see available commands.'
+  ]);
+
+  const handleTerminalCommand = (e: React.FormEvent) => {
+    e.preventDefault();
+    const cmd = terminalInput.toLowerCase().trim();
+    let response = '';
+
+    if (cmd === 'help') response = 'Available commands: about, skills, contact, clear, exit';
+    else if (cmd === 'about') response = 'Abdul Habir Al Majdi. NIM: F1B02310096. Electrical Engineering Unram.';
+    else if (cmd === 'skills') response = 'IoT, Networking, Troubleshooting, Fiber Optics, Java, Python.';
+    else if (cmd === 'contact') response = 'Email: abhyyy333@gmail.com | LinkedIn: Abdul Habir Al Majdi';
+    else if (cmd === 'clear') {
+      setTerminalHistory([]);
+      setTerminalInput('');
+      return;
+    }
+    else if (cmd === 'exit') {
+      setIsTerminalOpen(false);
+      setTerminalInput('');
+      return;
+    }
+    else response = `Command not found: ${cmd}. Type "help" for assistance.`;
+
+    setTerminalHistory([...terminalHistory, `ahm@os:~$ ${terminalInput}`, response]);
+    setTerminalInput('');
+  };
+  // --------------------------------------
+
   useEffect(() => {
     const meta = document.createElement('meta');
     meta.name = "google-site-verification";
@@ -281,6 +316,51 @@ export default function Home() {
       <footer className={`py-12 text-center border-t ${cardBorder} text-[10px] uppercase tracking-widest opacity-50`}>
         © 2026 Abdul Habir Al Majdi — NIM F1B02310096.
       </footer>
+
+      {/* --- UI TERMINAL (TAMBAHAN BARU DI BAGIAN PALING BAWAH) --- */}
+      {/* FLOATING TERMINAL BUTTON */}
+      <button 
+        onClick={() => setIsTerminalOpen(true)}
+        className="fixed bottom-24 right-8 p-4 bg-black text-green-500 rounded-full shadow-2xl border border-green-500/30 hover:scale-110 transition-all z-40 animate-bounce"
+      >
+        <Terminal size={24} />
+      </button>
+
+      {/* TERMINAL MODAL */}
+      {isTerminalOpen && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[60] flex items-center justify-center p-4">
+          <div className="w-full max-w-2xl bg-[#0c0c0c] border border-zinc-800 rounded-xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+            {/* Top Bar */}
+            <div className="bg-[#1a1a1a] p-3 flex justify-between items-center border-b border-zinc-800">
+              <div className="flex gap-2">
+                <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div className="w-3 h-3 rounded-full bg-green-500"></div>
+              </div>
+              <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">ahm@os-noc: ~</span>
+              <button onClick={() => setIsTerminalOpen(false)}><X size={16} className="text-zinc-500 hover:text-white" /></button>
+            </div>
+            
+            {/* Terminal Content */}
+            <div className="p-6 h-[400px] overflow-y-auto font-mono text-sm text-green-400 bg-black/50">
+              {terminalHistory.map((line, i) => (
+                <div key={i} className="mb-1">{line}</div>
+              ))}
+              <form onSubmit={handleTerminalCommand} className="flex gap-2 mt-4">
+                <span className="text-blue-400">ahm@os:~$</span>
+                <input 
+                  autoFocus
+                  className="bg-transparent border-none outline-none flex-1 text-green-400"
+                  value={terminalInput}
+                  onChange={(e) => setTerminalInput(e.target.value)}
+                />
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
+      {/* -------------------------------------------------------- */}
+
     </div>
   );
 }
