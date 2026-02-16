@@ -16,7 +16,7 @@ export default function CVPage() {
         <header className="border-b-2 border-gray-800 pb-6 mb-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
           <div>
             <h1 className="text-3xl md:text-4xl font-bold uppercase tracking-tighter text-black">Abdul Habir Al Majdi</h1>
-            <p className="text-base md:text-lg font-medium text-gray-700 mt-1">Electrical Engineering Student & IT Specialist</p>
+            <p className="text-base md:text-lg font-medium text-gray-700 mt-1"> Network, Computer Technician & IT Specialist</p>
             <p className="text-xs text-gray-500 italic">NIM: F1B02310096</p>
           </div>
           <div className="text-left md:text-right text-[11px] md:text-sm space-y-1 text-black">
@@ -34,18 +34,19 @@ export default function CVPage() {
             <section>
               <h2 className="font-bold uppercase border-b border-gray-300 mb-3 text-sm tracking-widest text-blue-900">Skills</h2>
               <div className="text-xs space-y-2 uppercase font-medium">
-                <p>• Computer Troubleshooting</p>
+                <p>• Computer Troubleshooting and Technician</p>
                 <p>• Network Monitoring</p>
                 <p>• OS Installation (Windows)</p>
-                <p>• Microcontroller (ESP32/Wemos)</p>
+                <p>• Microcontroller (ESP32/Wemos/Arduino)</p>
                 <p>• Hardware Maintenance</p>
+                <p>• Server Maintenance</p>
               </div>
             </section>
 
             <section>
               <h2 className="font-bold uppercase border-b border-gray-300 mb-3 text-sm tracking-widest text-blue-900">Achievements</h2>
               <div className="text-xs space-y-3">
-                <p><strong>Bright Scholarship</strong><br/>Fully Funded Scholar by YBM BRILiaN</p>
+                <p><strong>Bright Scholarship Batch 09</strong><br/>Fully Funded Scholar by YBM BRILiaN</p>
                 <p><strong>PRISMA 2025</strong><br/>National Scientific Paper Finalist</p>
               </div>
             </section>
@@ -69,13 +70,14 @@ export default function CVPage() {
                 <div>
                   <div className="flex justify-between items-start">
                     <h3 className="font-bold">Telkom Indonesia – Arnet Denpasar</h3>
-                    <span className="text-[10px] text-gray-500">Jan 2026 - Present</span>
+                    <span className="text-[10px] text-gray-500">Dec 2025 - Feb 2026</span>
                   </div>
                   <p className="text-xs italic mb-2">Network & IT Infrastructure Intern</p>
                   <ul className="text-xs list-disc ml-4 space-y-1 opacity-90">
                     <li>Monitoring infrastruktur jaringan backbone di NOC Arnet.</li>
                     <li>Pemeliharaan perangkat server dan manajemen kabel.</li>
                     <li>Analisis sistem pendingin (PAC) terhadap performa backbone.</li>
+                    <li>Instalasi perangkat IoT pada server guna memonitoring suhu perangkat menggunakan Wemos D1 Mini dan DHT22.</li>
                   </ul>
                 </div>
 
