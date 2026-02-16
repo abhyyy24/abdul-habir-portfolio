@@ -6,7 +6,7 @@ import {
   Github, Mail, Phone, Linkedin, FileText, Moon, Sun,
   GraduationCap, Briefcase, Wrench, Settings, 
   Terminal, MessageSquare, Globe, Trophy, Award, CheckCircle,
-  Menu, X // Tambahkan ikon Menu dan X
+  Menu, X, Download 
 } from 'lucide-react';
 
 // Setup Supabase Client
@@ -17,7 +17,7 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 export default function Home() {
   const [isDark, setIsDark] = useState(true); 
   const [visitors, setVisitors] = useState(0); 
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // State untuk Toggle Menu Mobile
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Logika Visitor Counter & Google Verification
   useEffect(() => {
@@ -57,39 +57,37 @@ export default function Home() {
       
       {/* Navbar - Fixed */}
       <nav className={`fixed top-0 w-full z-50 ${navBg} backdrop-blur-md py-4 px-6 flex justify-between items-center border-b ${isDark ? 'border-[#0e1c47]/10' : 'border-white/10'}`}>
-        
-        {/* Logo/Name (Optional) */}
         <div className="font-black italic text-sm md:hidden">AHM.</div>
 
-        {/* Desktop Menu - Muncul di Layar Gede */}
-        <div className="hidden md:flex gap-6 text-[10px] font-bold uppercase tracking-[0.2em]">
+        {/* Menu Desktop */}
+        <div className="hidden md:flex gap-6 text-[10px] font-bold uppercase tracking-[0.2em] items-center">
           <a href="#home" className="hover:opacity-60 transition-opacity">Home</a>
           <a href="#about" className="hover:opacity-60 transition-opacity">About</a>
           <a href="#skills" className="hover:opacity-60 transition-opacity">Skills</a>
           <a href="#achievements" className="hover:opacity-60 transition-opacity">Achievements</a>
           <a href="#education" className="hover:opacity-60 transition-opacity">Education</a>
           <a href="#experience" className="hover:opacity-60 transition-opacity">Experience</a>
+          <a 
+            href="/cv" 
+            className={`flex items-center gap-2 px-4 py-2 rounded-full text-[9px] border ${isDark ? 'border-[#0e1c47] bg-[#0e1c47] text-white' : 'border-white bg-white text-[#0e1c47]'} hover:scale-105 transition-transform`}
+          >
+            <Download size={12} /> CV
+          </a>
         </div>
 
         <div className="flex items-center gap-2">
-          {/* Theme Toggle */}
           <button 
             onClick={() => setIsDark(!isDark)}
             className={`p-2 rounded-lg transition-colors ${isDark ? 'bg-[#0e1c47]/10 hover:bg-[#0e1c47]/20' : 'bg-white/10 hover:bg-white/20'}`}
           >
             {isDark ? <Sun size={16} /> : <Moon size={16} />}
           </button>
-
-          {/* Mobile Menu Button - Muncul cuma di HP */}
-          <button 
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 rounded-lg"
-          >
+          <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden p-2 rounded-lg">
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
-        {/* Mobile Dropdown Menu - Menumpuk ke bawah */}
+        {/* Menu Dropdown Mobile */}
         {isMenuOpen && (
           <div className={`absolute top-full left-0 w-full ${navBg} backdrop-blur-xl border-b ${cardBorder} flex flex-col p-6 gap-4 text-[10px] font-bold uppercase tracking-[0.2em] md:hidden`}>
             <a href="#home" onClick={() => setIsMenuOpen(false)} className="py-2 border-b border-white/5">Home</a>
@@ -97,7 +95,10 @@ export default function Home() {
             <a href="#skills" onClick={() => setIsMenuOpen(false)} className="py-2 border-b border-white/5">Skills</a>
             <a href="#achievements" onClick={() => setIsMenuOpen(false)} className="py-2 border-b border-white/5">Achievements</a>
             <a href="#education" onClick={() => setIsMenuOpen(false)} className="py-2 border-b border-white/5">Education</a>
-            <a href="#experience" onClick={() => setIsMenuOpen(false)} className="py-2">Experience</a>
+            <a href="#experience" onClick={() => setIsMenuOpen(false)} className="py-2 border-b border-white/5">Experience</a>
+            <a href="/cv" className="py-3 flex items-center gap-2 justify-center bg-[#0e1c47] text-white rounded-xl">
+              <Download size={14} /> View & Download CV
+            </a>
           </div>
         )}
       </nav>
@@ -113,27 +114,29 @@ export default function Home() {
             Electrical Engineering Student, Computer & Network Technician
           </p>
           
-          <div className="flex justify-center gap-4 mb-12 flex-wrap">
+          <div className="flex justify-center gap-4 mb-8 flex-wrap">
             <a href="https://github.com/abhyyy24" target="_blank" rel="noopener noreferrer" className={`p-4 ${isDark ? 'bg-white/40 border-[#0e1c47]/10 text-[#0e1c47]' : 'bg-black/20 border-white/10 text-white'} hover:scale-110 rounded-2xl transition-all border shadow-sm`}>
               <Github size={24} />
             </a>
             <a href="https://mail.google.com/mail/?view=cm&fs=1&to=abhyyy333@gmail.com" target="_blank" rel="noopener noreferrer" className={`p-4 ${isDark ? 'bg-white/40 border-[#0e1c47]/10 text-[#0e1c47]' : 'bg-black/20 border-white/10 text-white'} hover:scale-110 rounded-2xl transition-all border shadow-sm`}>
               <Mail size={24} />
             </a>
-            <a href="#" className={`p-4 ${isDark ? 'bg-white/40 border-[#0e1c47]/10 text-[#0e1c47]' : 'bg-black/20 border-white/10 text-white'} opacity-50 cursor-not-allowed rounded-2xl border shadow-sm`}>
-              <Phone size={24} />
-            </a>
             <a href="https://www.linkedin.com/in/abdul-habir-al-majdi-7a7098291" target="_blank" rel="noopener noreferrer" className={`p-4 ${isDark ? 'bg-white/40 border-[#0e1c47]/10 text-[#0e1c47]' : 'bg-black/20 border-white/10 text-white'} hover:scale-110 rounded-2xl transition-all border shadow-sm`}>
               <Linkedin size={24} />
             </a>
-            <a href="#" className={`p-4 ${isDark ? 'bg-white/40 border-[#0e1c47]/10 text-[#0e1c47]' : 'bg-black/20 border-white/10 text-white'} opacity-50 cursor-not-allowed rounded-2xl border shadow-sm`}>
-              <FileText size={24} />
-            </a>
           </div>
 
-          <div className={`inline-flex items-center gap-2 px-6 py-2 ${isDark ? 'bg-white/30 text-[#0e1c47]' : 'bg-black/30 text-white'} rounded-full border ${cardBorder} text-xs font-bold`}>
-            <span className={`w-2 h-2 rounded-full animate-pulse ${isDark ? 'bg-[#0e1c47]' : 'bg-blue-400'}`}></span>
-            {visitors.toLocaleString()} visitors
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4">
+            <div className={`inline-flex items-center gap-2 px-6 py-3 ${isDark ? 'bg-white/30 text-[#0e1c47]' : 'bg-black/30 text-white'} rounded-full border ${cardBorder} text-xs font-bold`}>
+              <span className={`w-2 h-2 rounded-full animate-pulse ${isDark ? 'bg-[#0e1c47]' : 'bg-blue-400'}`}></span>
+              {visitors.toLocaleString()} visitors
+            </div>
+            <a 
+              href="/cv" 
+              className={`inline-flex items-center gap-2 px-8 py-3 rounded-full text-xs font-black uppercase tracking-widest transition-all ${isDark ? 'bg-[#0e1c47] text-white hover:bg-[#0e1c47]/80' : 'bg-white text-[#0e1c47] hover:bg-zinc-200'} shadow-lg`}
+            >
+              <Download size={16} /> Download CV
+            </a>
           </div>
         </div>
       </section>
@@ -145,20 +148,12 @@ export default function Home() {
           <div className={`${cardBg} rounded-[2.5rem] p-8 md:p-12 flex flex-col md:flex-row gap-12 items-center border ${cardBorder} shadow-2xl`}>
             <div className={`w-64 h-80 rounded-3xl flex-shrink-0 overflow-hidden border ${cardBorder} flex items-center justify-center italic text-sm text-center px-4 ${isDark ? 'bg-white/20 text-[#0e1c47]' : 'bg-zinc-800 text-zinc-500'}`}>
               <div className={`w-64 h-80 rounded-3xl flex-shrink-0 overflow-hidden border ${cardBorder} shadow-lg`}>
-                <img 
-                  src="/abdul.jpeg" 
-                  alt="Abdul Habir Al Majdi" 
-                  className="w-full h-full object-cover shadow-inner"
-                />
+                <img src="/abdul.jpeg" alt="Abdul Habir Al Majdi" className="w-full h-full object-cover shadow-inner" />
               </div>
             </div>
             <div className={`flex-1 space-y-6 ${isDark ? 'text-[#0e1c47]' : 'text-zinc-300'}`}>
-              <p className="text-lg leading-relaxed font-medium">
-                Mahasiswa Teknik Elektro Universitas Mataram (NIM: F1B02310096).
-              </p>
-              <p className="leading-relaxed opacity-80 text-sm md:text-base">
-                Berfokus pada sistem komputer, jaringan, dan elektronika. Memiliki latar belakang teknis yang kuat sebagai teknisi IT di MM Tronik selama 4 tahun dan pengalaman magang di infrastruktur backbone Telkom Indonesia.
-              </p>
+              <p className="text-lg leading-relaxed font-medium">Mahasiswa Teknik Elektro Universitas Mataram (NIM: F1B02310096).</p>
+              <p className="leading-relaxed opacity-80 text-sm md:text-base">Berfokus pada sistem komputer, jaringan, dan elektronika. Memiliki latar belakang teknis yang kuat sebagai teknisi IT di MM Tronik selama 4 tahun dan pengalaman magang di infrastruktur backbone Telkom Indonesia.</p>
             </div>
           </div>
         </div>
@@ -230,7 +225,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION 5: EDUCATION (FIXED RESPONSIVE) */}
+      {/* SECTION 5: EDUCATION */}
       <section id="education" className="py-20 md:py-32 px-4 md:px-6 text-left">
         <div className="max-w-4xl mx-auto">
           <h2 className={`text-[10px] font-black uppercase tracking-[0.4em] mb-12 md:mb-16 text-center ${subText}`}>Education</h2>
@@ -240,33 +235,30 @@ export default function Home() {
             <p className={`text-sm md:text-base font-medium mb-6 ${isDark ? 'text-[#0e1c47]/90' : 'text-blue-400'}`}>Bachelor of Electrical Engineering | 2022 – Present</p>
             <ul className="space-y-4 opacity-80 text-xs md:text-sm list-none text-left">
               <li className="flex gap-3 items-start"><span className="font-bold">•</span> Fokus pada sistem komputer, networking, dan elektronika.</li>
-              <li className="flex gap-3 items-start"><span className="font-bold">•</span> Mengembangkan kemampuan analisis dan praktik laboratorium melalui proyek akademik.</li>
-              <li className="flex gap-3 items-start"><span className="font-bold">•</span> Mengikuti program pertukaran mahasiswa ke Malaysia sebagai bagian dari pengembangan internasional.</li>
+              <li className="flex gap-3 items-start"><span className="font-bold">•</span> Mengikuti program pertukaran mahasiswa ke Malaysia.</li>
             </ul>
           </div>
         </div>
       </section>
 
-      {/* SECTION 6: EXPERIENCE (FIXED RESPONSIVE) */}
+      {/* SECTION 6: EXPERIENCE */}
       <section id="experience" className="py-20 md:py-32 px-4 md:px-6">
         <div className="max-w-5xl mx-auto">
           <h2 className={`text-[10px] font-black uppercase tracking-[0.4em] mb-12 md:mb-16 text-center ${subText}`}>Experience</h2>
           <div className="grid gap-6 md:gap-8">
             <div className={`${cardBg} p-6 md:p-12 rounded-[2rem] md:rounded-[2.5rem] border ${cardBorder} relative overflow-hidden group shadow-2xl text-left`}>
               <Wrench className="absolute -right-8 -top-8 text-white/5 group-hover:text-blue-500/10 transition-colors hidden lg:block" size={180} />
-              <div className="relative z-10">
+              <div className="relative z-10 text-left">
                 <h3 className="text-xl md:text-2xl font-bold mb-1 italic">MM Tronik | Sumbawa Besar, Indonesia</h3>
                 <p className={`text-sm md:text-base font-semibold mb-6 ${isDark ? 'text-[#0e1c47]/90' : 'text-blue-400'}`}>Computer & IT Support Technician | 2020 – 2024</p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 text-xs md:text-sm opacity-80 leading-relaxed">
-                  <ul className="space-y-2">
-                    <li className="flex gap-2 items-start">• Diagnosa & perbaikan hardware/software PC & Laptop.</li>
-                    <li className="flex gap-2 items-start">• Instalasi OS Windows, driver, dan aplikasi.</li>
-                    <li className="flex gap-2 items-start">• Upgrade RAM, Storage, PSU, dan Motherboard.</li>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs md:text-sm opacity-80 leading-relaxed">
+                  <ul className="space-y-2 text-left">
+                    <li>• Diagnosa & perbaikan hardware/software PC & Laptop.</li>
+                    <li>• Instalasi OS Windows, driver, dan aplikasi.</li>
                   </ul>
-                  <ul className="space-y-2">
-                    <li className="flex gap-2 items-start">• Troubleshooting OS errors, overheating, & boot failures.</li>
-                    <li className="flex gap-2 items-start">• Setup LAN, instalasi kabel, dan internet troubleshooting.</li>
-                    <li className="flex gap-2 items-start">• Konsultasi teknis & maintenance sistem untuk user.</li>
+                  <ul className="space-y-2 text-left">
+                    <li>• Setup LAN, internet troubleshooting.</li>
+                    <li>• Konsultasi teknis & maintenance sistem.</li>
                   </ul>
                 </div>
               </div>
@@ -276,10 +268,9 @@ export default function Home() {
               <div className="relative z-10 text-left">
                 <h3 className="text-xl md:text-2xl font-bold mb-1 italic">Telkom Indonesia – Arnet Denpasar</h3>
                 <p className={`text-sm md:text-base font-semibold mb-6 ${isDark ? 'text-[#0e1c47]/90' : 'text-blue-400'}`}>Network & IT Infrastructure Intern</p>
-                <ul className="space-y-3 opacity-80 text-xs md:text-sm">
-                  <li className="flex gap-3 items-start">• Monitoring & pemeliharaan infrastruktur jaringan backbone.</li>
-                  <li className="flex gap-3 items-start">• Troubleshooting jaringan dan diagnosa konektivitas.</li>
-                  <li className="flex gap-3 items-start">• Maintenance server, cable management, & instalasi perangkat jaringan.</li>
+                <ul className="space-y-3 opacity-80 text-xs md:text-sm text-left">
+                  <li>• Monitoring & pemeliharaan infrastruktur jaringan backbone.</li>
+                  <li>• Maintenance server, cable management, & instalasi perangkat.</li>
                 </ul>
               </div>
             </div>
