@@ -337,7 +337,7 @@ export default function Home() {
                 <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                 <div className="w-3 h-3 rounded-full bg-green-500"></div>
               </div>
-              <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">ahm@os-noc: ~</span>
+              <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">ahm@os: ~</span>
               <button onClick={() => setIsTerminalOpen(false)}><X size={16} className="text-zinc-500 hover:text-white" /></button>
             </div>
             
