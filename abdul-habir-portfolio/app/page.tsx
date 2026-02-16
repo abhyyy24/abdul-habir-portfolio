@@ -5,7 +5,8 @@ import { createClient } from '@supabase/supabase-js';
 import { 
   Github, Mail, Phone, Linkedin, FileText, Moon, Sun,
   GraduationCap, Briefcase, Wrench, Settings, 
-  Terminal, MessageSquare, Globe, Trophy, Award, CheckCircle 
+  Terminal, MessageSquare, Globe, Trophy, Award, CheckCircle,
+  Menu, X // Tambahkan ikon Menu dan X
 } from 'lucide-react';
 
 // Setup Supabase Client
@@ -14,19 +15,17 @@ const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 export default function Home() {
-  // BAGIAN INI SUDAH DIUBAH MENJADI TRUE AGAR OTOMATIS LIGHT MODE
   const [isDark, setIsDark] = useState(true); 
   const [visitors, setVisitors] = useState(0); 
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // State untuk Toggle Menu Mobile
 
   // Logika Visitor Counter & Google Verification
   useEffect(() => {
-    // 1. Tambahkan Tag Verifikasi Google Search Console secara dinamis
     const meta = document.createElement('meta');
     meta.name = "google-site-verification";
     meta.content = "RJlF46BUaIE8Vs1NGUfJNfheW12AUvFLw3QCUk4x6ZA";
     document.head.appendChild(meta);
 
-    // 2. Logika Visitor Counter Real-Time
     async function updateVisitors() {
       let { data, error } = await supabase
         .from('visitors')
@@ -36,7 +35,6 @@ export default function Home() {
       if (data && !error) {
         const newCount = data.count + 1;
         setVisitors(newCount);
-
         await supabase
           .from('visitors')
           .update({ count: newCount })
@@ -59,7 +57,12 @@ export default function Home() {
       
       {/* Navbar - Fixed */}
       <nav className={`fixed top-0 w-full z-50 ${navBg} backdrop-blur-md py-4 px-6 flex justify-between items-center border-b ${isDark ? 'border-[#0e1c47]/10' : 'border-white/10'}`}>
-        <div className="flex gap-6 text-[10px] font-bold uppercase tracking-[0.2em] overflow-x-auto no-scrollbar whitespace-nowrap">
+        
+        {/* Logo/Name (Optional) */}
+        <div className="font-black italic text-sm md:hidden">AHM.</div>
+
+        {/* Desktop Menu - Muncul di Layar Gede */}
+        <div className="hidden md:flex gap-6 text-[10px] font-bold uppercase tracking-[0.2em]">
           <a href="#home" className="hover:opacity-60 transition-opacity">Home</a>
           <a href="#about" className="hover:opacity-60 transition-opacity">About</a>
           <a href="#skills" className="hover:opacity-60 transition-opacity">Skills</a>
@@ -67,12 +70,36 @@ export default function Home() {
           <a href="#education" className="hover:opacity-60 transition-opacity">Education</a>
           <a href="#experience" className="hover:opacity-60 transition-opacity">Experience</a>
         </div>
-        <button 
-          onClick={() => setIsDark(!isDark)}
-          className={`p-2 rounded-lg transition-colors ml-4 ${isDark ? 'bg-[#0e1c47]/10 hover:bg-[#0e1c47]/20' : 'bg-white/10 hover:bg-white/20'}`}
-        >
-          {isDark ? <Sun size={16} /> : <Moon size={16} />}
-        </button>
+
+        <div className="flex items-center gap-2">
+          {/* Theme Toggle */}
+          <button 
+            onClick={() => setIsDark(!isDark)}
+            className={`p-2 rounded-lg transition-colors ${isDark ? 'bg-[#0e1c47]/10 hover:bg-[#0e1c47]/20' : 'bg-white/10 hover:bg-white/20'}`}
+          >
+            {isDark ? <Sun size={16} /> : <Moon size={16} />}
+          </button>
+
+          {/* Mobile Menu Button - Muncul cuma di HP */}
+          <button 
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="md:hidden p-2 rounded-lg"
+          >
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+
+        {/* Mobile Dropdown Menu - Menumpuk ke bawah */}
+        {isMenuOpen && (
+          <div className={`absolute top-full left-0 w-full ${navBg} backdrop-blur-xl border-b ${cardBorder} flex flex-col p-6 gap-4 text-[10px] font-bold uppercase tracking-[0.2em] md:hidden`}>
+            <a href="#home" onClick={() => setIsMenuOpen(false)} className="py-2 border-b border-white/5">Home</a>
+            <a href="#about" onClick={() => setIsMenuOpen(false)} className="py-2 border-b border-white/5">About</a>
+            <a href="#skills" onClick={() => setIsMenuOpen(false)} className="py-2 border-b border-white/5">Skills</a>
+            <a href="#achievements" onClick={() => setIsMenuOpen(false)} className="py-2 border-b border-white/5">Achievements</a>
+            <a href="#education" onClick={() => setIsMenuOpen(false)} className="py-2 border-b border-white/5">Education</a>
+            <a href="#experience" onClick={() => setIsMenuOpen(false)} className="py-2">Experience</a>
+          </div>
+        )}
       </nav>
 
       {/* SECTION 1: HERO */}
@@ -261,7 +288,7 @@ export default function Home() {
       </section>
 
       <footer className={`py-12 text-center border-t ${cardBorder} text-[10px] uppercase tracking-widest opacity-50`}>
-        © 2026 Abdul Habir Al Majdi.
+        © 2026 Abdul Habir Al Majdi — NIM F1B02310096.
       </footer>
     </div>
   );
